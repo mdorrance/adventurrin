@@ -16,6 +16,9 @@ gem 'puma'
 gem 'figaro'
 gem 'instagram'
 gem 'omniauth-instagram'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+
 gem 'rails_12factor', group: :production
 
 group :development, :test do

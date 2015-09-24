@@ -1,0 +1,23 @@
+<div id="myCarousel" class="carousel container slide">
+  <div class="carousel-inner">
+    <div class="active item one"></div>
+    <div class="item two"></div>
+    <div class="item three"></div>
+  </div>
+</div>
+<div class="col-sm-6 col-sm-offset-3">
+  <div class="landing well">
+    <h1 class="text-center">Welcome to <span class="blue">Instaclone</span></h1>
+    <p class="text-center">The best way to share photos! EVER!!!</p>
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+        <%= link_to "Login", "/auth/instagram", class: "btn btn-block btn-default" %>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.carousel').carousel({interval: 5000});
+  });
+</script>
