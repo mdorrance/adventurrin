@@ -3,7 +3,8 @@
       <!-- Brand and toggle get grouped for better mobile display -->
       <!-- <div class="col-sm-8 col-sm-offset-2"> -->
         <div class="navbar-header">
-          <a class="navbar-brand navbar-left" href="/feed">Adventurrin</a>
+          <%= link_to "Adventurrin", users_path, class:"navbar-brand navbar-left" %>
+          <!-- <a class="navbar-brand navbar-left" href="user_path">Adventurrin</a> -->
         </div>
         <div class="navbar-form navbar-left">
           <%= render partial: 'layouts/search_form' %>

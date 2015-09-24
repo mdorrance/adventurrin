@@ -1,0 +1,95 @@
+<%= render partial: 'layouts/profile_nav' %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3 col-sm-offset-1">
+      <%= image_tag current_user.image_url, class: "img-responsive img-circle",
+                  alt: "#{current_user.name} image" %>
+    </div>
+    <div class="profile col-sm-6">
+      <div class="clearfix">
+        <h2 class="pull-left"><%= current_user.nickname %></h2>
+        <%= link_to "Edit Profile", "https://instagram.com/accounts/edit", class: 'btn btn-sm btn-default pull-right' %>
+      </div>
+      <h5> <%= current_user.name %> </h5>
+      <div class="stats">
+        <div class="col-sm-4">
+          <p class="text-left"><strong><%= current_user.client.user.counts.media %></strong> posts</p>
+        </div>
+        <div class="col-sm-4">
+          <p class="text-left"><strong><%= current_user.client.user.counts.followed_by %></strong> followers</p>
+        </div>
+        <div class="col-sm-4">
+          <p class="text-left"><strong><%= current_user.client.user.counts.follows %></strong> following</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <% current_user.client.user_recent_media.each do |media_item| %>
+    <% if media_item.location %>
+    <div class="user-media col-sm-4">
+      <a href="#" data-toggle="modal" data-target="#photo-<%= media_item.id %>">
+        <%= image_tag media_item.images.standard_resolution.url, class: "img-responsive",
+                  alt: "#{current_user.name} image" %>
+      </a>
+    </div>
+    <!-- Modal -->
+    <div id="photo-<%= media_item.id %>" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-7">
+                <%= image_tag media_item.images.standard_resolution.url, class: "img-responsive",
+                          alt: "#{current_user.name} image" %>
+              </div>
+              <div class="col-sm-5">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <%= image_tag current_user.image_url, class: "img-responsive img-circle",
+                                alt: "#{current_user.name} image" %>
+                  </div>
+                  <div class="col-sm-9">
+                    <h5> <%= current_user.name %> </h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <hr>
+                  <p> <%= media_item.likes.count %> likes </p>
+                  <br>
+                  <% media_item.comments.data.each do |comment| %>
+                    <p> <%= link_to comment.from.username, "https://instagram.com/#{comment.from.username}" %> <%= comment.text %> </p>
+                  <% end %>
+                  <iframe width="100%" height="100%" frameborder="0" style="border:0"
+          src="https://www.google.com/maps/embed/v1/place?q=<%=media_item.location.latitude%>,<%=media_item.location.longitude%>&key=AIzaSyA8EXRXA27O2SX5t7rY8wgLMFHZmiBqtWI" allowfullscreen></iframe>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-1" id="heart">
+                    <i class="fa fa-heart-o"></i>
+                  </div>
+                  <div class="col-sm-6" id="comment">
+                    <input type="text" class="form-control" placeholder="Comment ...">
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="dots">
+                      <span>&#x25cb;</span><span>&#x25cb;</span><span>&#x25cb;</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div> -->
+        </div>
+      </div>
+    </div> <!-- end of Modal -->
+    <% end %>
+    <% end %>
+  </div>
+</div>
