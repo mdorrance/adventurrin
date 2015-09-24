@@ -1,64 +1,43 @@
 <%= render partial: 'layouts/feed_nav' %>
-<div class="row" style="padding-top:350px;">
-  <div class="col-sm-6 col-sm-offset-3" id="card-list">
+  <div class="col-sm-8" id="card-list">
     <% @feed.each do |feed| %>
     <% if render_location(feed) %>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <div class="row">
-          <div class="col-sm-2">
-            <%= image_tag render_profile_picture(feed), class: "img-responsive img-circle",
-                        alt: "#{render_username(feed)} image" %>
-          </div>
-          <div class="col-sm-8">
-            <h5 class="text-left"><%= link_to render_username(feed), "https://instagram.com/#{render_username(feed)}" %></h5>
-            <p class="text-left" id="location_name"> <%= render_location(feed) %></p>
-            <!-- <p class="text-left lat-long" data-latlong="<%#= feed.location.latitude %>,<%= feed.location.longitude %>"> <%#= render_latitude(feed) %> </p>
-            <p class="text-left"> <%#= render_longitude(feed) %> </p> -->
-
-          </div>
-          <div class="col-sm-2">
-          </div>
-        </div>
-      </div>
-      <div class="panel-body">
-        <a href="#" data-toggle="modal" data-target="#photo-<%= feed.id %>">
-          <div id='map'></div>
+      <div class="panel panel-default">
+    <div class="row">
+      <div class="col-sm-6">
+        <a href="#" data-toggle="modal" data-target="#photo-<%= feed.id %>" >
           <%= image_tag feed.images.standard_resolution.url, class: "img-responsive",
-                      alt: "#{current_user.name} image" %>
+                    alt: "#{current_user.name} image" %>
         </a>
-        <br>
-        <iframe width="100%" height="300" frameborder="0" style="border:0"
-src="https://www.google.com/maps/embed/v1/search?q=<%=feed.location.latitude%>,<%=feed.location.longitude%>&key=AIzaSyA8EXRXA27O2SX5t7rY8wgLMFHZmiBqtWI" allowfullscreen></iframe>
-        <div id='map'></div>
       </div>
-      <div class="panel-footer">
-        <% if feed.likes.count > 4 %>
-        <p> <%= feed.likes.count %> likes</p>
-        <% else %>
-          <% feed.likes.data.each do |username| %>
-          <%= link_to username.username, "https://instagram.com/#{username.username}" %>
-          <% end %>
-          like this
-        <% end %>
+      <div class="col-sm-6">
+        <!-- <div class="panel panel-default"> -->
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-sm-3">
+                <%= image_tag render_profile_picture(feed), class: "img-responsive img-circle",
+                            alt: "#{render_username(feed)} image" %>
+              </div>
+              <div class="col-sm-9">
+                <a href="#" id="heart"><i class="fa fa-heart-o fa-lg pull-right"></i></a>
 
-        <p> <%= render_text(feed) %> </p>
-        <hr>
-        <div class="row">
-          <div class="col-sm-1" id="heart">
-            <i class="fa fa-heart-o fa-lg"></i>
-          </div>
-          <div class="col-sm-9" id="comment">
-            <input type="text" class="form-control" placeholder="Comment ...">
-          </div>
-          <div class="col-sm-2">
-            <div class="dots">
-              <span>&#x25cb;</span><span>&#x25cb;</span><span>&#x25cb;</span>
+                <h5 class="text-left"><%= link_to render_username(feed), "https://instagram.com/#{render_username(feed)}" %></h5>
+                <p class="text-left" id="location_name"> <%= render_location(feed) %></p>
+                <!-- <p class="text-left lat-long" data-latlong="<%#= feed.location.latitude %>,<%= feed.location.longitude %>"> <%#= render_latitude(feed) %> </p>
+                <p class="text-left"> <%#= render_longitude(feed) %> </p> -->
+
+
+              </div>
+            <iframe width="100%" height="100%" frameborder="0" style="border:0"
+    src="https://www.google.com/maps/embed/v1/search?q=<%=feed.location.latitude%>,<%=feed.location.longitude%>&key=AIzaSyA8EXRXA27O2SX5t7rY8wgLMFHZmiBqtWI" allowfullscreen></iframe>
+              <!-- <div class="col-sm-2">
+              </div> -->
             </div>
           </div>
         </div>
       </div>
     </div>
+
       <% end %>
     <!-- Modal -->
     <div id="photo-<%= feed.id %>" class="modal fade" role="dialog">
@@ -82,4 +61,29 @@ src="https://www.google.com/maps/embed/v1/search?q=<%=feed.location.latitude%>,<
     </div> <!-- end of Modal -->
     <% end %>
   </div>
-</div>
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+
+        <h3 class="lobster text-center">Adventurrin Awaits!</h3>
+        <p class="text-center">Where are you going next?</p>
+      </div>
+          <% @feed.each do |feed| %>
+          <% if render_location(feed) %>
+          <div class="panel panel-default">
+          <div class="row">
+
+      <div class="panel-body">
+        <div class="col-sm-4">
+          <%= image_tag feed.images.standard_resolution.url, class: "img-responsive",
+                    alt: "#{current_user.name} image" %>
+        </div>
+        <div class="col-sm-8">
+          <h5 class="text-left" id="location_name"> <%= render_location(feed) %></h5>
+        </div>
+      </div>
+          </div>
+  </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>

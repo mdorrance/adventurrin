@@ -16,6 +16,10 @@ body {
   font-family: 'Lobster Two', cursive;
 }
 
+.lobster {
+  font-family: 'Lobster Two', cursive;
+}
+
 .navbar-default, .panel-default > .panel-heading, .panel-footer {
   background-color: #ffffff;
 }
@@ -45,8 +49,11 @@ body {
   padding-top: 5px;
 }
 
-#heart {
+a#heart {
   padding-top: 7px;
+  :hover {
+    color: red;
+  }
 }
 
 #comment .form-control {
