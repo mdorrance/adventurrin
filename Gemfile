@@ -18,7 +18,7 @@ gem 'instagram'
 gem 'omniauth-instagram'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-
+gem 'yelp', require: 'yelp'
 gem 'rails_12factor', group: :production
 
 group :development, :test do
