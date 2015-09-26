@@ -37,7 +37,12 @@
             <div class="modal-body">
               <iframe width="100%" height="100%" frameborder="0" style="border:0"
       src="https://www.google.com/maps/embed/v1/search?q=<%=render_latitude(feed)%>,<%=render_longitude(feed)%>&key=AIzaSyA8EXRXA27O2SX5t7rY8wgLMFHZmiBqtWI" allowfullscreen></iframe>
-              <% results = Yelp.client.search('aspen,co', { term: 'food' }) %>
+
+              <% params = { term: 'food',
+                           limit: 3
+                         } %>
+              <% coordinates = { latitude: render_latitude(feed), longitude: render_longitude(feed)} %>
+              <% results = Yelp.client.search_by_coordinates(coordinates, params) %>
               <div class="row">
                 <% results.businesses.each do |result| %>
                 <div class="panel panel-default">
