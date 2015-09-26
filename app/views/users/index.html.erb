@@ -48,29 +48,26 @@
                 <div class="panel panel-default">
                   <div class="row">
                     <div class="panel-body">
-                <div class="col-sm-3">
-                  <img src="<%=result.image_url%>" alt="" />
+                      <div class="col-sm-3">
+                        <img src="<%=result.image_url%>" alt="" />
+                      </div>
+                      <div class="col-sm-4">
+                        <address>
+                        <strong><%=result.name%></strong><br>
+                        <%=result.location.address[0]%><br>
+                        <%=result.location.city%>, <%=result.location.state_code%><br> <%=result.location.postal_code%><br>
+                        <abbr title="Phone">P:</abbr><%= result.display_phone %><br>
+                        <img src='<%=result.rating_img_url_small%>'>
+                      </address>
+                      </div>
+                      <div class="col-sm-5">
+                        <p><%=result.snippet_text %></p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-sm-4">
-                  <address>
-                  <strong><%=result.name%></strong><br>
-                  <%=result.location.address[0]%><br>
-                  <%=result.location.city%>, <%=result.location.state_code%><br> <%=result.location.postal_code%><br>
-                  <abbr title="Phone">P:</abbr><%= result.display_phone %><br>
-                  <img src='<%=result.rating_img_url_small%>'>
-                </address>
-                </div>
-                <div class="col-sm-5">
-                  <p><%=result.snippet_text %></p>
-                </div>
-              </div>
-              </div>
-              </div>
                 <% end %>
               </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
