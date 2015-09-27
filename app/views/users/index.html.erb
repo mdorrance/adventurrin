@@ -26,11 +26,13 @@
                   <%= image_tag render_profile_picture(feed), class: "img-responsive img-circle",
                               alt: "#{render_username(feed)} image" %>
                 </div>
-                <div class="col-sm-9">
+                <div class="col-sm-9 header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h3><%= render_username(feed) %></h3>
-                  <h3><%= render_location(feed) %></h3>
-                  <p><%= render_latitude(feed) %>, <%= render_longitude(feed) %></p>
+                  <h3><%= render_username(feed) %><span class="pull-right">
+                    <a data-adventure="adventure:{location_name:'<%= render_location(feed) %>',latitude:'<%= render_latitude(feed) %>',longitude:'<%= render_longitude(feed) %>',location_img_url:'<%= feed.images.standard_resolution.url %>'}" class="create-adventure" href="#"><i class="fa fa-heart-o"></i></a></span></h3>
+                  <h3 class="adventure-location-name"><%= render_location(feed) %></h3>
+                  <p class="adventure-latitude"><%= render_latitude(feed) %></p>
+                  <p class="adventure-longitute"> <%= render_longitude(feed) %></p>
                 </div>
               </div>
             </div>
@@ -49,19 +51,19 @@
                   <div class="row">
                     <div class="panel-body">
                       <div class="col-sm-3">
-                        <img src="<%=result.image_url%>" alt="" />
+                        <img src="<%=render_business_image(result)%>" alt="" />
                       </div>
                       <div class="col-sm-4">
                         <address>
-                        <strong><%=result.name%></strong><br>
-                        <%=result.location.address[0]%><br>
-                        <%=result.location.city%>, <%=result.location.state_code%><br> <%=result.location.postal_code%><br>
-                        <abbr title="Phone">P:</abbr><%= result.display_phone %><br>
-                        <img src='<%=result.rating_img_url_small%>'>
+                        <strong><%=render_business_name(result)%></strong><br>
+                        <%=render_business_address(result)%><br>
+                        <%=render_business_city(result)%>, <%=render_business_state(result)%><br> <%=render_business_zipcode(result)%><br>
+                        <%=render_business_phone(result)%><br>
+                        <img src='<%=render_busines_rating(result)%>'>
                       </address>
                       </div>
                       <div class="col-sm-5">
-                        <p><%=result.snippet_text %></p>
+                        <p><%=render_business_snippet(result)%></p>
                       </div>
                     </div>
                   </div>
@@ -83,15 +85,17 @@
     </div>
       <% @feed.each do |feed| %>
       <% if render_location(feed) %>
-      <div class="panel panel-default">
-        <div class="row">
-          <div class="panel-body">
-            <div class="col-sm-4">
-              <%= image_tag feed.images.standard_resolution.url, class: "img-responsive",
-                        alt: "#{current_user.name} image" %>
-            </div>
-            <div class="col-sm-8">
-              <h5 class="text-left" id="location_name"> <%= render_location(feed) %></h5>
+      <div id="saved-adventures">
+        <div class="panel panel-default">
+          <div class="row">
+            <div class="panel-body">
+              <div class="col-sm-4">
+                <%= image_tag feed.images.standard_resolution.url, class: "img-responsive",
+                          alt: "#{current_user.name} image" %>
+              </div>
+              <div class="col-sm-8">
+                <h5 class="text-left" id="location_name"> <%= render_location(feed) %></h5>
+              </div>
             </div>
           </div>
         </div>

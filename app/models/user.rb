@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   validates :uid, :token, presence: true, uniqueness: true
+  has_many :adventures
 
   def self.find_or_create_from_auth(oauth_data)
     user = User.find_or_create_by(provider: oauth_data.provider, uid: oauth_data.uid)

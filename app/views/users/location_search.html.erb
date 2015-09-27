@@ -49,19 +49,19 @@
                   <div class="row">
                     <div class="panel-body">
                       <div class="col-sm-3">
-                        <img src="<%=result.image_url%>" alt="" />
+                        <img src="<%=render_business_image(result)%>" alt="" />
                       </div>
                       <div class="col-sm-4">
                         <address>
-                        <strong><%=result.name%></strong><br>
-                        <%=result.location.address[0]%><br>
-                        <%=result.location.city%>, <%=result.location.state_code%><br> <%=result.location.postal_code%><br>
-                        <abbr title="Phone">P:</abbr><%= result.display_phone %><br>
-                        <img src='<%=result.rating_img_url_small%>'>
+                        <strong><%=render_business_name(result)%></strong><br>
+                        <%=render_business_address(result)%><br>
+                        <%=render_business_city(result)%>, <%=render_business_state(result)%><br> <%=render_business_zipcode(result)%><br>
+                        <abbr title="Phone">P:</abbr><%=render_business_phone(result)%><br>
+                        <img src='<%=render_busines_rating(result)%>'>
                       </address>
                       </div>
                       <div class="col-sm-5">
-                        <p><%=result.snippet_text %></p>
+                        <p><%=render_business_snippet(result)%></p>
                       </div>
                     </div>
                   </div>
