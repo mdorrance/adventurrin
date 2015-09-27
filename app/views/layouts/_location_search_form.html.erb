@@ -1,0 +1,7 @@
+<div class="form-group" id="location-search">
+  <%= form_tag("/location_search", method: "get") do%>
+    <%= label_tag :location, "" %>
+    <%= text_field_tag :location, nil, class: 'form-control', placeholder: 'search locations' %>
+    <%= submit_tag "", class: 'hidden', method: "get", value: 'search-locations' %>
+  <% end %>
+</div>
