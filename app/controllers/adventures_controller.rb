@@ -13,6 +13,7 @@ class AdventuresController < ApplicationController
 
   def create
     @adventure = Adventure.create(adventure_params)
+    render json: @adventure
   end
 
   def edit

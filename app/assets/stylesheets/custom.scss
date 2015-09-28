@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Lobster+Two);
+@import url(https://fonts.googleapis.com/css?family=Bad+Script);
 
 html,
 body {
@@ -13,23 +14,23 @@ body {
   color: #125688;
 }
 .navbar-brand {
-  font-family: 'Lobster Two', cursive;
+  font-family: 'Bad Script', cursive;
 }
 
 .lobster {
-  font-family: 'Lobster Two', cursive;
+  font-family: 'Bad Script', cursive;
 }
 
 .navbar-default, .panel-default > .panel-heading, .panel-footer {
-  background-color: #ffffff;
+  background-color: #333333;
 }
 
 .navbar-default a, .navbar-default a:visited, a, a:visited, .navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > li > a:visited {
-  color: #125688;
+  color: #c1c727;
 }
 
-.navbar-default a:hover, a:hover, .navbar-default .navbar-nav > li > a:hover {
-    color: #0d3c5f;
+.navbar-default a:hover, a:hover, .navbar-default .navbar-nav > li > a:hover, .navbar-brand:hover  {
+    color: #94a60a;
 }
 
 .navbar-form {
@@ -78,17 +79,17 @@ a#heart {
 
 }
 .carousel .one {
-    background: url(image-path("surfer-sunset.jpg"));
+    background: url(image-path("desert-stars.jpg"));
     background-size: cover;
     -moz-background-size: cover;
 }
 .carousel .two {
-    background: url(image-path("bulldog.jpg"));
+    background: url(image-path("surfer-sunset.jpg"));
     background-size: cover;
     -moz-background-size: cover;
 }
 .carousel .three {
-    background: url(image-path("sunrise-ocean.jpg"));
+    background: url(image-path("mountain-stars.jpg"));
     background-size: cover;
     -moz-background-size: cover;
 }
