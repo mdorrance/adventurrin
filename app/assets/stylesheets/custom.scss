@@ -29,7 +29,7 @@ body {
   color: #c1c727;
 }
 
-.navbar-default a:hover, a:hover, .navbar-default .navbar-nav > li > a:hover, .navbar-brand:hover  {
+.navbar-default a:hover, a:hover, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus  {
     color: #94a60a;
 }
 
@@ -42,7 +42,7 @@ body {
   border-radius: 10px;
 }
 
-.panel {
+.panel, .modal-content {
   border-radius: 0px;
 }
 
@@ -108,7 +108,10 @@ a#heart {
   border: none;
   border-radius: 0px;
   h1 {
-    font-family: 'Lobster Two', cursive;
+    color: #ffffff;
+  }
+  p {
+    color: #ffffff;
   }
   .btn {
     border-radius: 0px;

@@ -30,9 +30,9 @@
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <h3><%= render_username(feed) %><span class="pull-right">
                     <a data-location="<%= render_location(feed) %>" data-latitude="<%= render_latitude(feed) %>" data-longitude="<%= render_longitude(feed) %>" data-image="<%= feed.images.standard_resolution.url %>" data-user="<%=current_user.id%>" class="create-adventure" href="#"><i class="fa fa-heart-o"></i></a></span></h3>
-                  <h3 class="adventure-location-name"><%= render_location(feed) %></h3>
-                  <p class="adventure-latitude"><%= render_latitude(feed) %></p>
-                  <p class="adventure-longitute"> <%= render_longitude(feed) %></p>
+                  <h3><%= render_location(feed) %></h3>
+                  <p><%= render_latitude(feed) %></p>
+                  <p> <%= render_longitude(feed) %></p>
                 </div>
               </div>
             </div>

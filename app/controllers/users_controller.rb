@@ -19,6 +19,7 @@ class UsersController < ApplicationController
       else
         @feed = location_media
         @location = params[:location]
+        @adventures = current_user.adventures.all
       end
     end
   end
