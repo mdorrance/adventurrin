@@ -1,11 +1,15 @@
 $(document).ready(function(){
   $("a[class='create-adventure']").on("click", function(){
-    var adventureParams = $(this).data("adventure");
-
+    var location = $(this).data("location");
+    var Latitude = $(this).data("latitude");
+    var Longitude = $(this).data("longitude");
+    var image = $(this).data("image");
+    var userId = $(this).data("user");
+    console.log(location,Latitude,Longitude,image,userId);
     $.ajax({
       type: "POST",
       url: "/adventures",
-      data: adventureParams,
+      data: {adventure: {user_id: userId, location_name: location, latitude: Latitude, longitude: Longitude, location_img_url: image}},
       success: function(adventure) {
         renderAdventure(adventure)
       }

@@ -29,7 +29,7 @@
                 <div class="col-sm-9 header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <h3><%= render_username(feed) %><span class="pull-right">
-                    <a data-adventure="adventure:{location_name:'<%= render_location(feed) %>',latitude:'<%= render_latitude(feed) %>',longitude:'<%= render_longitude(feed) %>',location_img_url:'<%= feed.images.standard_resolution.url %>'}" class="create-adventure" href="#"><i class="fa fa-heart-o"></i></a></span></h3>
+                    <a data-location="<%= render_location(feed) %>" data-latitude="<%= render_latitude(feed) %>" data-longitude="<%= render_longitude(feed) %>" data-image="<%= feed.images.standard_resolution.url %>" data-user="<%=current_user.id%>" class="create-adventure" href="#"><i class="fa fa-heart-o"></i></a></span></h3>
                   <h3 class="adventure-location-name"><%= render_location(feed) %></h3>
                   <p class="adventure-latitude"><%= render_latitude(feed) %></p>
                   <p class="adventure-longitute"> <%= render_longitude(feed) %></p>
@@ -83,24 +83,22 @@
       <h3 class="lobster text-center">Adventurrin Awaits!</h3>
       <p class="text-center">Where are you going next?</p>
     </div>
-      <% @feed.each do |feed| %>
-      <% if render_location(feed) %>
+      <% @adventures.each do |adventure| %>
       <div id="saved-adventures">
         <div class="panel panel-default">
           <div class="row">
             <div class="panel-body">
               <div class="col-sm-4">
-                <%= image_tag feed.images.standard_resolution.url, class: "img-responsive",
+                <%= image_tag adventure.location_img_url, class: "img-responsive",
                           alt: "#{current_user.name} image" %>
               </div>
               <div class="col-sm-8">
-                <h5 class="text-left" id="location_name"> <%= render_location(feed) %></h5>
+                <h5 class="text-left" id="location_name"> <%= adventure.location_name %></h5>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <% end %>
       <% end %>
     </div>
   </div>

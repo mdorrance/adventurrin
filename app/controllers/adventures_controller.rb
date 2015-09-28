@@ -12,7 +12,6 @@ class AdventuresController < ApplicationController
   end
 
   def create
-    @adventures = Adventure.all
     @adventure = Adventure.create(adventure_params)
   end
 

@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @feed = current_user.client.user_media_feed
+    @adventures = current_user.adventures.all
   end
 
   def location_search
