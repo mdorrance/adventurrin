@@ -10,7 +10,7 @@
       <% @feed.each do |feed| %>
       <% if render_location(feed) %>
       <div class="col-sm-4 pb-30">
-        <a href="#" data-toggle="modal" data-target="#photo-<%= feed.id %>" >
+        <a href="#" class="feed-image" data-target="#photo-<%= feed.id %>" >
           <%= image_tag feed.images.standard_resolution.url, class: "img-responsive",
                     alt: "#{current_user.name} image" %>
         </a>
@@ -75,30 +75,10 @@
       </div> <!-- end of Modal -->
       <% end %>
       <% end %>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="panel panel-default">
-      <h3 class="lobster text-center">Adventurrin Awaits!</h3>
-      <p class="text-center">Where are you going next?</p>
-    </div>
-      <% @adventures.each do |adventure| %>
-      <div id="saved-adventures">
-        <div class="panel panel-default">
-          <div class="row">
-            <div class="panel-body">
-              <div class="col-sm-4">
-                <%= image_tag adventure.location_img_url, class: "img-responsive",
-                          alt: "#{current_user.name} image" %>
-              </div>
-              <div class="col-sm-8">
-                <h5 class="text-left" id="location_name"> <%= adventure.location_name %></h5>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-      <% end %>
+    </div>
+    <div class="col-sm-4">
+      <%= render partial: 'saved_adventures' %>
     </div>
   </div>
 </div>

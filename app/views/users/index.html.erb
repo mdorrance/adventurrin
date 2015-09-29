@@ -10,7 +10,7 @@
       <% @feed.each do |feed| %>
       <% if render_location(feed) %>
       <div class="col-sm-4 pb-30">
-        <a href="#" data-toggle="modal" data-target="#photo-<%= feed.id %>" >
+        <a href="#" class="feed-image" data-target="#photo-<%= feed.id %>" >
           <%= image_tag feed.images.standard_resolution.url, class: "img-responsive",
                     alt: "#{current_user.name} image" %>
         </a>
@@ -29,7 +29,7 @@
                 <div class="col-sm-9 header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <h3><%= render_username(feed) %><span class="pull-right">
-                    <a data-location="<%= render_location(feed) %>" data-latitude="<%= render_latitude(feed) %>" data-longitude="<%= render_longitude(feed) %>" data-image="<%= feed.images.standard_resolution.url %>" data-user="<%=current_user.id%>" class="create-adventure" href="#"><i class="fa fa-heart-o"></i></a></span></h3>
+                    <a data-location="<%= render_location(feed) %>" data-latitude="<%= render_latitude(feed) %>" data-longitude="<%= render_longitude(feed) %>" data-image="<%= feed.images.standard_resolution.url %>" data-user="<%=current_user.id%>" class="create-adventure" href=""><i class="fa fa-heart-o"></i></a></span></h3>
                   <h3><%= render_location(feed) %></h3>
                   <p><%= render_latitude(feed) %></p>
                   <p> <%= render_longitude(feed) %></p>
@@ -79,28 +79,7 @@
     </div>
   </div>
   <div class="col-sm-4">
-    <div class="panel panel-default">
-      <h3 class="lobster text-center">Adventurrin Awaits!</h3>
-      <p class="text-center">Where are you going next?</p>
-    </div>
-      <% @adventures.each do |adventure| %>
-      <div id="saved-adventures">
-        <div class="panel panel-default" data-id="<%= adventure.id %>">
-          <div class="row">
-            <div class="panel-body">
-              <div class="col-sm-4">
-                <%= image_tag adventure.location_img_url, class: "img-responsive",
-                          alt: "#{current_user.name} image" %>
-              </div>
-              <div class="col-sm-8">
-                <button type="button" class="close pull-right" id='delete-adventure'>&times;</button>
-                <h5 class="text-left" id="location_name"> <%= adventure.location_name %></h5>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <% end %>
+    <%= render partial: 'saved_adventures' %>
     </div>
   </div>
 </div>

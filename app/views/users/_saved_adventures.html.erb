@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+  <h3 class="lobster text-center">Adventurrin Awaits!</h3>
+  <p class="text-center">Where are you going next?</p>
+</div>
+  <div class="saved-adventures">
+  <% @adventures.each do |adventure| %>
+    <div class="panel panel-default" data-id="<%= adventure.id %>">
+      <div class="row">
+        <div class="panel-body">
+          <div class="col-sm-4">
+            <%= image_tag adventure.location_img_url, class: "img-responsive",
+                      alt: "#{current_user.name} image" %>
+          </div>
+          <div class="col-sm-8">
+            <button type="button" class="close pull-right delete-adventure">&times;</button>
+            <h5 class="text-left" id="location_name"> <%= adventure.location_name %></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
