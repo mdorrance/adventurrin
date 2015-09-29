@@ -5,6 +5,7 @@ $(document).ready(function(){
 
 function createAdventure() {
   $("a[class='create-adventure']").on("click", function(event){
+    event.preventDefault();
     var location = $(this).data("location");
     var Latitude = $(this).data("latitude");
     var Longitude = $(this).data("longitude");
