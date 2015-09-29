@@ -40,7 +40,7 @@ module UsersHelper
   end
 
   def render_business_state(result)
-    result.location.state_code if result.location.state_code
+    result.location.state_code if result.location.respond_to?(:state_code)
   end
 
   def render_business_zipcode(result)
