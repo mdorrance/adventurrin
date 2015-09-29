@@ -16,10 +16,47 @@ module UsersHelper
   end
 
   def render_latitude(feed)
-    feed.location.latitude
+    feed.location.latitude if feed.location
   end
 
   def render_longitude(feed)
-    feed.location.longitude
+    feed.location.longitude if feed.location
   end
+
+  def render_business_image(result)
+    result.image_url if result.respond_to?(:image_url)
+  end
+
+  def render_business_name(result)
+    result.name if result.respond_to?(:name)
+  end
+
+  def render_business_address(result)
+    result.location.address[0] if result.respond_to?(:location)
+  end
+
+  def render_business_city(result)
+    result.location.city if result.respond_to?(:location)
+  end
+
+  def render_business_state(result)
+    result.location.state_code if result.location.state_code
+  end
+
+  def render_business_zipcode(result)
+    result.location.postal_code if result.location.postal_code
+  end
+
+  def render_business_phone(result)
+    result.display_phone if result.respond_to?(:display_phone)
+  end
+
+  def render_busines_rating(result)
+    result.rating_img_url_small if result.respond_to?(:rating_img_url_small)
+  end
+
+  def render_business_snippet(result)
+    result.snippet_text if result.respond_to?(:snippet_text)
+  end
+
 end

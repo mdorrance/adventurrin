@@ -1,0 +1,103 @@
+<%= render partial: 'layouts/feed_nav' %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8" id="card-list">
+      <div class="panel panel-default">
+        <h3 class="text-center">Inspiring images from your search for <span class="blue"><%= @location %></span>!</h3>
+        <p class="text-center">Build your <span class="lobster">Adventurrin</span> que and never waste a weekend again!</p>
+      </div>
+      <div class="row">
+      <% @feed.each do |feed| %>
+      <% if render_location(feed) %>
+      <div class="col-sm-4 pb-30">
+        <a href="#" data-toggle="modal" data-target="#photo-<%= feed.id %>" >
+          <%= image_tag feed.images.standard_resolution.url, class: "img-responsive",
+                    alt: "#{current_user.name} image" %>
+        </a>
+      </div>
+      <!-- Modal -->
+      <div id="photo-<%= feed.id %>" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="row">
+                <div class="col-sm-3">
+                  <%= image_tag feed.user.profile_picture, class: "img-responsive img-circle",
+                              alt: "#{render_username(feed)} image" %>
+                </div>
+                <div class="col-sm-9">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h3><%= render_username(feed) %></h3>
+                  <h3><%= render_location(feed) %></h3>
+                  <p><%= render_latitude(feed) %>, <%= render_longitude(feed) %></p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-body">
+              <iframe width="100%" height="100%" frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed/v1/search?q=<%=render_latitude(feed)%>,<%=render_longitude(feed)%>&key=AIzaSyA8EXRXA27O2SX5t7rY8wgLMFHZmiBqtWI" allowfullscreen></iframe>
+
+              <% params = { term: 'food',
+                           limit: 3
+                         } %>
+              <% coordinates = { latitude: render_latitude(feed), longitude: render_longitude(feed)} %>
+              <% results = Yelp.client.search_by_coordinates(coordinates, params) %>
+              <div class="row">
+                <% results.businesses.each do |result| %>
+                <div class="panel panel-default">
+                  <div class="row">
+                    <div class="panel-body">
+                      <div class="col-sm-3">
+                        <img src="<%=render_business_image(result)%>" alt="" />
+                      </div>
+                      <div class="col-sm-4">
+                        <address>
+                        <strong><%=render_business_name(result)%></strong><br>
+                        <%=render_business_address(result)%><br>
+                        <%=render_business_city(result)%>, <%=render_business_state(result)%><br> <%=render_business_zipcode(result)%><br>
+                        <abbr title="Phone">P:</abbr><%=render_business_phone(result)%><br>
+                        <img src='<%=render_busines_rating(result)%>'>
+                      </address>
+                      </div>
+                      <div class="col-sm-5">
+                        <p><%=render_business_snippet(result)%></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- end of Modal -->
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <h3 class="lobster text-center">Adventurrin Awaits!</h3>
+      <p class="text-center">Where are you going next?</p>
+    </div>
+      <% @feed.each do |feed| %>
+      <% if render_location(feed) %>
+      <div class="panel panel-default">
+        <div class="row">
+          <div class="panel-body">
+            <div class="col-sm-4">
+              <%= image_tag feed.images.standard_resolution.url, class: "img-responsive",
+                        alt: "#{current_user.name} image" %>
+            </div>
+            <div class="col-sm-8">
+              <h5 class="text-left" id="location_name"> <%= render_location(feed) %></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

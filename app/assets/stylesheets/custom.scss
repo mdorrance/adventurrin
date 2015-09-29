@@ -1,4 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Lobster+Two);
+@import url(https://fonts.googleapis.com/css?family=Roboto|Amatic+SC|Sue+Ellen+Francisco);
+// font-family: 'Roboto', sans-serif;
+// font-family: 'Amatic SC', cursive;
+// font-family: 'Sue Ellen Francisco', cursive;
 
 html,
 body {
@@ -13,23 +16,28 @@ body {
   color: #125688;
 }
 .navbar-brand {
-  font-family: 'Lobster Two', cursive;
+  font-family: 'Amatic SC', cursive;
+  font-size: 40px;
 }
 
 .lobster {
-  font-family: 'Lobster Two', cursive;
+  font-family: 'Amatic SC', cursive;
+}
+
+.ellen-cursive {
+  font-family: 'Sue Ellen Francisco', cursive;
 }
 
 .navbar-default, .panel-default > .panel-heading, .panel-footer {
-  background-color: #ffffff;
+  background-color: #333333;
 }
 
 .navbar-default a, .navbar-default a:visited, a, a:visited, .navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > li > a:visited {
-  color: #125688;
+  color: #c1c727;
 }
 
-.navbar-default a:hover, a:hover, .navbar-default .navbar-nav > li > a:hover {
-    color: #0d3c5f;
+.navbar-default a:hover, a:hover, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus  {
+    color: #94a60a;
 }
 
 .navbar-form {
@@ -41,7 +49,7 @@ body {
   border-radius: 10px;
 }
 
-.panel {
+.panel, .modal-content {
   border-radius: 0px;
 }
 
@@ -78,17 +86,17 @@ a#heart {
 
 }
 .carousel .one {
-    background: url(image-path("surfer-sunset.jpg"));
+    background: url(image-path("desert-stars.jpg"));
     background-size: cover;
     -moz-background-size: cover;
 }
 .carousel .two {
-    background: url(image-path("bulldog.jpg"));
+    background: url(image-path("surfer-sunset.jpg"));
     background-size: cover;
     -moz-background-size: cover;
 }
 .carousel .three {
-    background: url(image-path("sunrise-ocean.jpg"));
+    background: url(image-path("mountain-stars.jpg"));
     background-size: cover;
     -moz-background-size: cover;
 }
@@ -106,15 +114,25 @@ a#heart {
   background-color: rgba(245, 245, 245, 0.2);
   border: none;
   border-radius: 0px;
-  h1 {
-    font-family: 'Lobster Two', cursive;
+  p {
+    color: #ffffff;
   }
   .btn {
     border-radius: 0px;
+    color: #ffffff;
   }
     .btn-default {
       background-color: transparent;
     }
+}
+
+.logo {
+  font-size: 50px;
+  color: #94a60a;
+}
+
+.white {
+  color: #ffffff;
 }
 
 ::-webkit-input-placeholder {
