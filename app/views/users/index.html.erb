@@ -10,7 +10,7 @@
       <% @feed.each do |feed| %>
       <% if render_location(feed) %>
       <div class="col-sm-4 pb-30">
-        <a href="#" data-toggle="modal" data-target="#photo-<%= feed.id %>" >
+        <a href="#" class="feed-image" data-target="#photo-<%= feed.id %>" >
           <%= image_tag feed.images.standard_resolution.url, class: "img-responsive",
                     alt: "#{current_user.name} image" %>
         </a>
@@ -84,7 +84,7 @@
       <p class="text-center">Where are you going next?</p>
     </div>
       <% @adventures.each do |adventure| %>
-      <div id="saved-adventures">
+      <div class="saved-adventures">
         <div class="panel panel-default" data-id="<%= adventure.id %>">
           <div class="row">
             <div class="panel-body">
@@ -93,7 +93,7 @@
                           alt: "#{current_user.name} image" %>
               </div>
               <div class="col-sm-8">
-                <button type="button" class="close pull-right" id='delete-adventure'>&times;</button>
+                <button type="button" class="close pull-right delete-adventure">&times;</button>
                 <h5 class="text-left" id="location_name"> <%= adventure.location_name %></h5>
               </div>
             </div>
