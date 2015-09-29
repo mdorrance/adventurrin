@@ -17,7 +17,6 @@ function createAdventure() {
       data: {adventure: {user_id: userId, location_name: location, latitude: Latitude, longitude: Longitude, location_img_url: image}},
       success: function(adventure) {
         renderAdventure(adventure);
-        deleteAdventure();
       }
     });
   });

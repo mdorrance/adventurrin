@@ -29,7 +29,7 @@
     <% current_user.client.user_recent_media.each do |media_item| %>
     <% if media_item.location %>
     <div class="pb-30 col-sm-4">
-      <a href="#" data-toggle="modal" data-target="#photo-<%= media_item.id %>">
+      <a href="#" class="feed-image" data-target="#photo-<%= media_item.id %>">
         <%= image_tag media_item.images.standard_resolution.url, class: "img-responsive",
                   alt: "#{current_user.name} image" %>
       </a>
