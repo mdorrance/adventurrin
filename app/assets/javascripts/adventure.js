@@ -15,14 +15,34 @@ $(document).ready(function(){
       }
     });
   });
+  deleteAdventure()
 });
 
 function renderAdventure(adventure) {
   $("#saved-adventures").append(
-    "<div class='panel panel-default'><div class='row'><div class='panel-body'><div class='col-sm-4'><img class='img-responsive' src='"
+    "<div class='panel panel-default data-id='"
+      + adventure.id
+      + "'><div class='row'><div class='panel-body'><div class='col-sm-4'><img class='img-responsive' src='"
       + adventure.location_img_url
-      + "'></div><div class='col-sm-8'><h5 class='text-left'>"
+      + "'></div><div class='col-sm-8'><button type='button' id='delete-adventure' class='close pull-right'>&times;</button><h5 class='text-left'>"
       + adventure.location_name
       + "</h5></div></div></div></div>"
   )
+}
+
+function deleteAdventure() {
+  $("#saved-adventures").delegate("#delete-adventure", "click", function(){
+    var $adventure = $(this).closest(".panel")
+
+    $.ajax({
+      type: "DELETE",
+      url: "/adventures/" + $adventure.attr('data-id'),
+      success: function() {
+        $adventure.remove()
+      },
+      error: function() {
+        $adventure.remove()
+      }
+    })
+  })
 }
