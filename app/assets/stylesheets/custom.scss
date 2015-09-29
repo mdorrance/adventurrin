@@ -1,5 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Lobster+Two);
-@import url(https://fonts.googleapis.com/css?family=Bad+Script);
+@import url(https://fonts.googleapis.com/css?family=Roboto|Amatic+SC|Sue+Ellen+Francisco);
+// font-family: 'Roboto', sans-serif;
+// font-family: 'Amatic SC', cursive;
+// font-family: 'Sue Ellen Francisco', cursive;
 
 html,
 body {
@@ -14,11 +16,16 @@ body {
   color: #125688;
 }
 .navbar-brand {
-  font-family: 'Bad Script', cursive;
+  font-family: 'Amatic SC', cursive;
+  font-size: 40px;
 }
 
 .lobster {
-  font-family: 'Bad Script', cursive;
+  font-family: 'Amatic SC', cursive;
+}
+
+.ellen-cursive {
+  font-family: 'Sue Ellen Francisco', cursive;
 }
 
 .navbar-default, .panel-default > .panel-heading, .panel-footer {
@@ -107,18 +114,25 @@ a#heart {
   background-color: rgba(245, 245, 245, 0.2);
   border: none;
   border-radius: 0px;
-  h1 {
-    color: #ffffff;
-  }
   p {
     color: #ffffff;
   }
   .btn {
     border-radius: 0px;
+    color: #ffffff;
   }
     .btn-default {
       background-color: transparent;
     }
+}
+
+.logo {
+  font-size: 50px;
+  color: #94a60a;
+}
+
+.white {
+  color: #ffffff;
 }
 
 ::-webkit-input-placeholder {
