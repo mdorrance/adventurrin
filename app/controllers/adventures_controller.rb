@@ -28,13 +28,16 @@ class AdventuresController < ApplicationController
   end
 
   def delete
-    @adventure = Adventure.find(params[:adventure_id])
+    @adventure = Adventure.find(params[:id])
+    @adventure.destroy
+
   end
 
   def destroy
     @adventures = Adventure.all
     @adventure = Adventure.find(params[:id])
     @adventure.destroy
+    head :ok
   end
 
 private

@@ -44,7 +44,7 @@ module UsersHelper
   end
 
   def render_business_zipcode(result)
-    result.location.postal_code if result.location.postal_code
+    result.location.postal_code if result.location.respond_to?(:postal_code)
   end
 
   def render_business_phone(result)
