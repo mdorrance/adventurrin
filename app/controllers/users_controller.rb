@@ -13,14 +13,18 @@ class UsersController < ApplicationController
 
   def location_search
     if params[:location] == ""
-      redirect_to users_path
+      redirect_to :back
+      flash[:warning] = "Sorry but you need to enter a location :)"
+    elsif Geocoder.coordinates(params[:location]).nil?
+      redirect_to :back
+      flash[:warning] = "Sorry but according to Google, that location doesn't exist. Try another one :)"
     else
       lat_long = Geocoder.coordinates(params[:location])
       location = current_user.client.location_search(lat_long[0].to_s,lat_long[1].to_s)
       location_media = current_user.client.media_search(lat_long[0].to_s,lat_long[1].to_s)
 
       if location_media[0].nil?
-      redirect_to users_path
+      redirect_to feed_path
       else
         @feed = location_media
         @location = params[:location]
