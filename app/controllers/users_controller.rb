@@ -2,8 +2,12 @@ class UsersController < ApplicationController
   before_action :authorize!
 
   def index
-    @feed = current_user.client.user_media_feed
-    @adventures = current_user.adventures.all
+    if current_user.client.user_media_feed.map {|media| media.location}.count == 0
+      @feed = current_user.client.media_popular
+    else
+      @feed = current_user.client.user_media_feed
+      @adventures = current_user.adventures.all
+    end
   end
 
   def location_search

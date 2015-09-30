@@ -27,6 +27,12 @@ module UsersHelper
     result.image_url if result.respond_to?(:image_url)
   end
 
+  def yelp_results(feed)
+    params = { term: 'food',limit: 3}
+    coordinates = { latitude: render_latitude(feed), longitude: render_longitude(feed)}
+    Yelp.client.search_by_coordinates(coordinates, params)
+  end
+  
   def render_business_name(result)
     result.name if result.respond_to?(:name)
   end
