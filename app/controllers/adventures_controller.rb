@@ -1,37 +1,37 @@
 class AdventuresController < ApplicationController
-  def index
-    @adventures = Adventure.all
-  end
-
-  def show
-    @adventure = Adventure.find(params[:id])
-  end
-
-  def new
-    @adventure = Adventure.new
-  end
+  # def index
+  #   @adventures = Adventure.all
+  # end
+  #
+  # def show
+  #   @adventure = Adventure.find(params[:id])
+  # end
+  #
+  # def new
+  #   @adventure = Adventure.new
+  # end
 
   def create
     @adventure = Adventure.create(adventure_params)
     render json: @adventure
   end
 
-  def edit
-    @adventure = Adventure.find(params[:id])
-  end
-
-  def update
-    @adventures = Adventure.all
-    @adventure = Adventure.find(params[:id])
-
-    @adventure.update_attributes(adventure_params)
-  end
-
-  def delete
-    @adventure = Adventure.find(params[:id])
-    @adventure.destroy
-
-  end
+  # def edit
+  #   @adventure = Adventure.find(params[:id])
+  # end
+  #
+  # def update
+  #   @adventures = Adventure.all
+  #   @adventure = Adventure.find(params[:id])
+  #
+  #   @adventure.update_attributes(adventure_params)
+  # end
+  #
+  # def delete
+  #   @adventure = Adventure.find(params[:id])
+  #   @adventure.destroy
+  #
+  # end
 
   def destroy
     @adventures = Adventure.all

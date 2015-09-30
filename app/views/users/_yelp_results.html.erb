@@ -1,0 +1,23 @@
+<% yelp_results(feed).businesses.each do |result| %>
+  <div class="panel panel-default">
+    <div class="row">
+      <div class="panel-body">
+        <div class="col-sm-3">
+          <img src="<%=render_business_image(result)%>" alt="" />
+        </div>
+        <div class="col-sm-4">
+          <address>
+            <strong><%=render_business_name(result)%></strong><br>
+            <%=render_business_address(result)%><br>
+            <%=render_business_city(result)%>, <%=render_business_state(result)%><br> <%=render_business_zipcode(result)%><br>
+            <%=render_business_phone(result)%><br>
+            <img src='<%=render_busines_rating(result)%>'>
+          </address>
+        </div>
+        <div class="col-sm-5">
+          <p><%=render_business_snippet(result)%></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
