@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def index
     if current_user.client.user_media_feed.map {|media| media.location}.count == 0
       @feed = current_user.client.media_popular
+      @adventures = current_user.adventures.all
     else
       @feed = current_user.client.user_media_feed
       @adventures = current_user.adventures.all
