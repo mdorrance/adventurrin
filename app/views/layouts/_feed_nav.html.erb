@@ -3,7 +3,7 @@
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="col-sm-10 col-sm-offset-1">
         <div class="navbar-header">
-          <%= link_to "Adventurrin", users_path, class:"navbar-brand navbar-left" %>
+          <%= link_to "Adventurrin", users_path, class:"navbar-brand navbar-left", id:"update-feed", data: "pending-feed-update" %>
         </div>
         <div class="navbar-form navbar-left">
           <%= render partial: 'layouts/location_search_form' %>
