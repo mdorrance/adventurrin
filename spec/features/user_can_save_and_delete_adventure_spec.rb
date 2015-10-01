@@ -4,7 +4,7 @@ RSpec.describe "User can see feed", type: :feature do
   context "A user with an instagram account" do
 
     it "renders feed" do
-      VCR.use_cassette("user_sees_feed_with_locations_test#feed") do
+      VCR.use_cassette("user_saves_an_adventure_test#feed") do
         visit root_path
         login_user
 
@@ -13,15 +13,22 @@ RSpec.describe "User can see feed", type: :feature do
         within(".navbar") do
           expect(page).to have_content "heshekids"
         end
+        find("a[data-target='#photo-1085839242808390881_1775839476']").click
 
-        expect(page).to have_content "rachelparri"
-        expect(page).to have_content "Panda Garden 13522 Julie Dr Poplar Grove, IL 61065"
-        expect(page).to have_content "West Maroon Pass, Maroon Bells Wilderness"
+        within("#photo-1085839242808390881_1775839476") do
+          find(".create-adventure").click
+        end
+
+        visit feed_path
+        
+        within(".saved-adventure") do
+          expect(page).to have_content "Steamboat Springs, Colorado"
+        end
 
       end
     end
 
-    it "renders feed without locations" do
+    xit "renders feed without locations" do
       VCR.use_cassette("user_who_has_no_friends_with_locations_sees_feed_with_locations_test#feed") do
         visit root_path
         login_user_no_location_feed

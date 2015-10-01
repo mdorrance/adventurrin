@@ -45,7 +45,6 @@ RSpec.configure do |config|
 
     mocks.verify_partial_doubles = true
   end
-
   def user
     @user ||= User.new(name: "Mike Dorrance",
                        nickname: "heshekids",
@@ -55,6 +54,32 @@ RSpec.configure do |config|
                        token: ENV['instagram_test'],
                        uid: "1234",
                        provider: "instagram")
+  end
+
+  def user_with_no_location_feed
+    @user_with_no_location_feed ||= User.new(name: "Mike Dorrance",
+                                             nickname: "adventurrus",
+                                             image_url: "happy.jpg",
+                                             bio: "Cool!",
+                                             website: "adventurrus.com",
+                                             token: ENV['instagram_sad_test'],
+                                             uid: "123456",
+                                             provider: "instagram")
+  end
+
+  def login_user_no_location_feed
+    OmniAuth.config.test_mode = true
+
+    OmniAuth.config.mock_auth[:instagram] = OmniAuth::AuthHash.new ({
+      'provider'    => user_with_no_location_feed.provider,
+      'uid'         => user_with_no_location_feed.uid,
+      'info'        => {:name =>user_with_no_location_feed.name,
+                        :nickname =>user_with_no_location_feed.nickname,
+                        :bio =>user_with_no_location_feed.bio,
+                        :website =>user_with_no_location_feed.website,
+                        :image =>user_with_no_location_feed.image_url},
+      'credentials' => {:token => ENV['instagram_sad_test']}
+    })
   end
 
   def login_user
@@ -70,6 +95,16 @@ RSpec.configure do |config|
                         :image =>user.image_url},
       'credentials' => {:token => ENV['instagram_test']}
     })
+  end
+
+  def wait_for_ajax
+    Timeout.timeout(Capybara.default_wait_time) do
+      loop until finished_all_ajax_requests?
+    end
+  end
+
+  def finished_all_ajax_requests?
+    page.evaluate_script('jQuery.active').zero?
   end
 
 end

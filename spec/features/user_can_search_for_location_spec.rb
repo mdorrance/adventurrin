@@ -14,20 +14,18 @@ RSpec.describe "User can search for location", type: :feature do
           expect(page).to have_content "heshekids"
         end
         within("#location-search") do
-          fill_in "search", :with => "St Charles IL"
-          click_link_or_button "search-users"
+          fill_in "search locations", :with => "St Charles IL"
+          click_link_or_button "search-locations"
         end
 
-        expect(current_path).to eq user_search_path
-        expect(page).to have_content "Tom"
-        assert page.has_xpath?("//img[@alt='tleskin image' and @src = 'http://scontent.cdninstagram.com/hphotos-xpf1/t51.2885-19/10950442_771009492947847_327550978_a.jpg']")
-        expect(page).to have_link "tleskin"
+        expect(current_path).to eq locations_path
+        expect(page).to have_content "St Charles IL"
 
       end
     end
 
-    it "renders user search box and NO results" do
-      VCR.use_cassette("user_sees_tag_search_test#sadpath") do
+    it "renders location box and NO results" do
+      VCR.use_cassette("user_sees_location_search_test#sadpath") do
         visit root_path
         login_user
 
@@ -36,18 +34,20 @@ RSpec.describe "User can search for location", type: :feature do
         within(".navbar") do
           expect(page).to have_content "heshekids"
         end
-        within("#user-search") do
-          fill_in "search", :with => ""
-          click_link_or_button "search-users"
+        within("#location-search") do
+          fill_in "search locations", :with => ""
+          click_link_or_button "search-locations"
         end
 
         expect(current_path).to eq feed_path
-
+        within(".alert") do
+          expect(page).to have_content "Sorry but you need to enter a location :)"
+        end
       end
     end
 
-    it "renders user search box and NO results" do
-      VCR.use_cassette("user_sees_tag_search_test#invalid_string") do
+    it "renders location search box and NO results" do
+      VCR.use_cassette("user_sees_location_search_test#invalid_string") do
         visit root_path
         login_user
 
@@ -56,13 +56,15 @@ RSpec.describe "User can search for location", type: :feature do
         within(".navbar") do
           expect(page).to have_content "heshekids"
         end
-        within("#user-search") do
-          fill_in "search", :with => "kdjasdpvna fpiuans;ogdn;askvdnoasndf;askd"
-          click_link_or_button "search-users"
+        within("#location-search") do
+          fill_in "search locations", :with => "k14891%$#j????*&%asdpvnafpiuans;ogdn;a!skvdnoa@sndf;askd"
+          click_link_or_button "search-locations"
         end
 
         expect(current_path).to eq feed_path
-
+        within(".alert") do
+          expect(page).to have_content "Sorry but according to Google, that location doesn\'t exist. Try another one :\)"
+        end
       end
     end
   end
