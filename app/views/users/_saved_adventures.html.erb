@@ -4,6 +4,7 @@
 </div>
   <div class="saved-adventures">
   <% @adventures.each do |adventure| %>
+  <a href="#" class="adventure-image" data-target="#adventure-<%= adventure.id %>" >
     <div class="panel panel-default" data-id="<%= adventure.id %>">
       <div class="row">
         <div class="panel-body">
@@ -18,5 +19,6 @@
         </div>
       </div>
     </div>
+  </a>
   <% end %>
   </div>
