@@ -1,0 +1,4 @@
+<% flash.each do |type, message| %>
+    <%= content_tag :div, sanitize(message),
+                    class: "text-center alert alert-#{type} flash fade in" %>
+  <% end %>

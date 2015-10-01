@@ -7,10 +7,6 @@ module UsersHelper
     feed.caption.from.username if feed.caption
   end
 
-  def render_text(feed)
-    feed.caption.text if feed.caption
-  end
-
   def render_location(feed)
     feed.location.name if feed.location
   end
@@ -32,7 +28,7 @@ module UsersHelper
     coordinates = { latitude: render_latitude(feed), longitude: render_longitude(feed)}
     Yelp.client.search_by_coordinates(coordinates, params)
   end
-  
+
   def render_business_name(result)
     result.name if result.respond_to?(:name)
   end
