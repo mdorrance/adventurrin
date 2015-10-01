@@ -19,12 +19,17 @@ class UsersController < ApplicationController
       redirect_to :back
       flash[:warning] = "Sorry but according to Google, that location doesn't exist. Try another one :)"
     else
-      lat_long = Geocoder.coordinates(params[:location])
-      location = current_user.client.location_search(lat_long[0].to_s,lat_long[1].to_s)
-      location_media = current_user.client.media_search(lat_long[0].to_s,lat_long[1].to_s)
-      @feed = location_media
+      @feed = search_results(params[:location])
       @location = params[:location]
-      @adventures = current_user.adventures.all    
+      @adventures = current_user.adventures.all
     end
   end
+
+  private
+    def search_results(params)
+      lat_long = Geocoder.coordinates(params)
+      location = current_user.client.location_search(lat_long[0].to_s,lat_long[1].to_s)
+      location_media = current_user.client.media_search(lat_long[0].to_s,lat_long[1].to_s)
+    end
+
 end
